@@ -14,14 +14,13 @@ bike = Bike.new
   end
 
   describe "Docking a bike" do
-  it { is_expected.to respond_to :dock_bike }
   it { is_expected.to respond_to(:dock_bike).with(1).argument }
   end
 
   it 'returns a docked bike' do
 #    bike = Bike.new
    subject.dock_bike(bike)
-   expect(subject.bike).to eq bike
+   expect(subject.release_bike).to eq bike
  end
 
  describe "Error message works?" do
