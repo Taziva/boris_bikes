@@ -33,14 +33,16 @@ bike = Bike.new
 
  describe "allows for a maximum of 20 bikes to be docked" do
   it "tests if I have too many bikes to dock" do
-    20.times { subject.dock_bike(Bike.new)}
+    DockingStation::DEFAULT_CAPACITY
+.times { subject.dock_bike(Bike.new)}
      expect{subject.dock_bike(bike)}.to raise_error(RuntimeError, 'Docking station full')
   end
 end
 
  describe "tests for 20 bikes to be docked" do
    it "tests if I have too many bikes to dock" do
-     19.times { subject.dock_bike(Bike.new)}
+     ((DockingStation::DEFAULT_CAPACITY)
+-1).times { subject.dock_bike(Bike.new)}
       expect{subject.dock_bike(bike)}.not_to raise_error
    end
  end
