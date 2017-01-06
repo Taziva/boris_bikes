@@ -1,1 +1,1 @@
-Boris Bikes by Ben Vaughan-Jones and Edyta Wrobel
+Boris Bikes Project
