@@ -40,10 +40,31 @@ bike = Bike.new
 end
 
  describe "tests for 20 bikes to be docked" do
-   it "tests if I have too many bikes to dock" do
+   it "tests if I have less than the maximum amount of bikes to dock" do
      ((DockingStation::DEFAULT_CAPACITY)
 -1).times { subject.dock_bike(Bike.new)}
       expect{subject.dock_bike(bike)}.not_to raise_error
    end
+ end
+
+ describe "allows for a user defined maximum number of bikes to be docked" do
+   docking_station = DockingStation.new(40)
+   it "tests if I have too many bikes to dock" do
+     (docking_station.capacity).times { docking_station.dock_bike(Bike.new)}
+     expect{docking_station.dock_bike(bike)}.to raise_error(RuntimeError, 'Docking station full')
+   end
+end
+
+describe "tests for 40 bikes to be docked" do
+  docking_station = DockingStation.new(40)
+  it "tests if I have less than the maximum amount of bikes to dock" do
+  (docking_station.capacity-1).times { docking_station.dock_bike(Bike.new)}
+  expect{docking_station.dock_bike(bike)}.not_to raise_error
+  end
+end
+
+
+ describe "Docking a bike" do
+ it { expect{DockingStation.new(21)}.not_to raise_error }
  end
 end
